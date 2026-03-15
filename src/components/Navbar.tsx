@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Shield } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -68,7 +67,6 @@ export function Navbar() {
 
         <div className={styles.navActions}>
           <Link href="/admin" className="btn-outline">Admin Panel</Link>
-          <ThemeToggle />
           
           <button className={styles.menuButton} onClick={toggleMenu} aria-label="Toggle menu">
             {isOpen ? <X size={28} /> : <Menu size={28} />}

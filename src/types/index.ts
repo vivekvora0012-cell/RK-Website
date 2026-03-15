@@ -54,3 +54,11 @@ export interface Slide {
   order_index: number;
   created_at: string;
 }
+
+export interface SocialLink {
+  id: number;
+  platform: string;
+  url: string;
+  order_index: number;
+  created_at: string;
+}

@@ -82,6 +82,16 @@ export async function initDB() {
     );
   `);
 
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS social_links (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      platform TEXT NOT NULL,
+      url TEXT NOT NULL,
+      order_index INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
   // Migration: Add image column to blogs if not exists
   try {
     await db.execute("ALTER TABLE blogs ADD COLUMN image TEXT");

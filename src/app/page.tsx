@@ -4,6 +4,8 @@ import { FadeIn } from '@/components/FadeIn';
 import styles from './page.module.css';
 import { HomeSlideshow } from '@/components/HomeSlideshow';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <>

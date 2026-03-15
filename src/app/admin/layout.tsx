@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Package, Box, FileText, Video, LogOut, Mail } from 'lucide-react';
+import { Home, Package, Box, FileText, Video, LogOut, Mail, Share2 } from 'lucide-react';
 import { logout } from '@/app/actions/auth';
 
 export default function AdminLayout({
@@ -59,6 +59,11 @@ export default function AdminLayout({
                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
                 onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
             <Home size={18} /> Manage Slideshow
+          </Link>
+          <Link href="/admin/social" style={{ padding: '0.75rem 1rem', borderRadius: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 500 }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+            <Share2 size={18} /> Manage Social Links
           </Link>
         </nav>
         

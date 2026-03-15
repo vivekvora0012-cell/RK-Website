@@ -84,3 +84,45 @@
   color: var(--text-secondary);
   font-size: 0.875rem;
 }
+
+.socialGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.contactLink:hover {
+  color: var(--accent-primary);
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary) !important;
+  transition: var(--transition);
+}
+
+.socialIcon:hover {
+  background-color: var(--accent-primary);
+  color: white !important;
+  border-color: var(--accent-primary);
+  transform: translateY(-3px);
+  padding-left: 0 !important;
+}

@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { FadeIn } from '@/components/FadeIn';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { submitInquiry } from '@/app/actions/inquiryActions';
