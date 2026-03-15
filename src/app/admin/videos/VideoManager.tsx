@@ -45,13 +45,9 @@ export function VideoManager({ initialVideos }: VideoManagerProps) {
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Video Title *</label>
             <input type="text" name="title" required defaultValue={editingVideo?.title || ''} key={editingVideo ? `ev-t-${editingVideo.id}` : 'av-t'} style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }} />
           </div>
-          <div style={{ flex: '1 1 70%' }}>
+          <div style={{ flex: '1 1 100%' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Video URL (YouTube/Drive) *</label>
             <input type="text" name="url" required defaultValue={editingVideo?.url || ''} key={editingVideo ? `ev-u-${editingVideo.id}` : 'av-u'} placeholder="https://..." style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }} />
-          </div>
-          <div style={{ flex: '1 1 25%' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Duration</label>
-            <input type="text" name="duration" defaultValue={editingVideo?.duration || '00:00'} key={editingVideo ? `ev-d-${editingVideo.id}` : 'av-d'} placeholder="e.g. 12:45" style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }} />
           </div>
           <div style={{ width: '100%', display: 'flex', gap: '1rem', marginTop: '1rem' }}>
             <button type="submit" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
@@ -71,7 +67,6 @@ export function VideoManager({ initialVideos }: VideoManagerProps) {
           <div key={v.id} style={{ backgroundColor: 'var(--bg-primary)', borderRadius: '1rem', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
             <div style={{ height: '170px', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
               <Play size={40} color="var(--accent-primary)" opacity={0.5} />
-              <div style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: 'rgba(0,0,0,0.8)', color: '#fff', padding: '2px 5px', borderRadius: '4px', fontSize: '0.75rem' }}>{v.duration}</div>
             </div>
             <div style={{ padding: '1.25rem' }}>
               <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', height: '2.4rem', overflow: 'hidden' }}>{v.title}</h3>

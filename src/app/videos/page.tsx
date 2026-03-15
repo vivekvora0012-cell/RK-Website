@@ -16,17 +16,16 @@ async function getVideos(): Promise<Video[]> {
       return {
         id: Number(row.id),
         title: String(row.title),
-        duration: String(row.duration),
         url: String(row.url),
         created_at: String(row.created_at)
       };
     });
   } else {
     return [
-      { id: 1, title: 'RK Design Philosophy masterclass', duration: '12:45', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
-      { id: 2, title: 'Behind the aesthetic: Royal Interfaces', duration: '08:20', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
-      { id: 3, title: 'Next.js 2026 Performance Optimization', duration: '15:10', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
-      { id: 4, title: 'Building the Minimalist Component Library', duration: '22:00', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
+      { id: 1, title: '3D Working Animation Video of Mobile Crushing Plant', url: 'https://www.youtube.com/watch?v=FqSaj7rskS0', created_at: '2026-01-01' },
+      { id: 2, title: 'Stationary Stone Crushing Plant 3D Model Working Animation', url: 'https://www.youtube.com/watch?v=x7fP7m_T7vE', created_at: '2026-01-01' },
+      { id: 3, title: 'Jaw Crusher Working Principle Animation', url: 'https://www.youtube.com/watch?v=jW01e1-oWkM', created_at: '2026-01-01' },
+      { id: 4, title: 'Baichy Stone Crushing Plant 3D Working Animation', url: 'https://www.youtube.com/watch?v=Yp94LpIsL38', created_at: '2026-01-01' },
     ];
   }
 }

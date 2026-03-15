@@ -120,23 +120,6 @@ export function VideoPlayer({ title, url, duration }: VideoPlayerProps) {
           }}></div>
         </div>
         
-        {duration && (
-          <div style={{
-            position: 'absolute',
-            bottom: '12px',
-            right: '12px',
-            backgroundColor: 'rgba(0,0,0,0.85)',
-            color: '#fff',
-            padding: '0.3rem 0.6rem',
-            borderRadius: '0.4rem',
-            fontSize: '0.8rem',
-            fontWeight: '600',
-            zIndex: 2,
-            fontFamily: 'monospace'
-          }}>
-            {duration}
-          </div>
-        )}
       </div>
       
       <h3 style={{ marginTop: '1.25rem', fontSize: '1.125rem', fontFamily: 'var(--font-playfair)', fontWeight: 600 }}>{title}</h3>
