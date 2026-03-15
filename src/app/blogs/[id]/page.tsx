@@ -10,9 +10,10 @@ export const dynamic = 'force-dynamic';
 export default async function BlogDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const blogId = parseInt(params.id);
+  const { id } = await params;
+  const blogId = parseInt(id);
   const blog = await getBlogById(blogId);
 
   if (!blog) {

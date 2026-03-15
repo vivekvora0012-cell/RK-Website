@@ -29,8 +29,8 @@ export function VideoPlayer({ title, url, duration }: VideoPlayerProps) {
   if (isPlaying) {
     let embedUrl = '';
     if (ytId) {
-      // Use standard embed parameters for max compatibility
-      embedUrl = `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&rel=0&modestbranding=1`;
+      // Basic embed URL for maximum reliability
+      embedUrl = `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1`;
     } else if (driveId) {
       embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
     }
