@@ -4,14 +4,19 @@ import db from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function getSocialLinks() {
-  const rs = await db.execute('SELECT * FROM social_links ORDER BY order_index ASC, created_at DESC');
-  return rs.rows.map(row => ({
-    id: Number(row.id),
-    platform: String(row.platform),
-    url: String(row.url),
-    order_index: Number(row.order_index),
-    created_at: String(row.created_at)
-  }));
+  try {
+    const rs = await db.execute('SELECT * FROM social_links ORDER BY order_index ASC, created_at DESC');
+    return rs.rows.map(row => ({
+      id: Number(row.id),
+      platform: String(row.platform),
+      url: String(row.url),
+      order_index: Number(row.order_index),
+      created_at: String(row.created_at)
+    }));
+  } catch (error) {
+    console.error('Failed to fetch social links:', error);
+    return [];
+  }
 }
 
 export async function addSocialLink(formData: FormData) {
