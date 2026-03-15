@@ -1,10 +1,11 @@
 import { getBlogs } from '@/app/actions/blogActions';
 import { BlogManager } from './BlogManager';
+import { Blog } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminBlogs() {
-  const blogs = await getBlogs() as any[];
+export default async function ManageBlogs() {
+  const blogs = (await getBlogs()) as unknown as Blog[];
 
   return (
     <div>

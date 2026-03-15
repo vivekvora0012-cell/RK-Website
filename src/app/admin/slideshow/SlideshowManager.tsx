@@ -1,8 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { Plus, Edit2, Trash2, X, Image as ImageIcon } from 'lucide-react';
-import { Slide, addSlide, deleteSlide, updateSlide } from '@/app/actions/slideshowActions';
+import Image from 'next/image';
+import { Plus, Edit2, Trash2, X } from 'lucide-react';
+import { addSlide, deleteSlide, updateSlide } from '@/app/actions/slideshowActions';
+import { Slide } from '@/types';
 
 interface SlideshowManagerProps {
   initialSlides: Slide[];
@@ -141,8 +143,8 @@ export function SlideshowManager({ initialSlides }: SlideshowManagerProps) {
             {initialSlides.map(slide => (
               <tr key={slide.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                 <td style={{ padding: '1rem' }}>
-                  <div style={{ width: '100px', height: '60px', borderRadius: '0.25rem', overflow: 'hidden', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
-                    <img src={getImageUrl(slide.image_url) || ''} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'relative', width: '100px', height: '60px', borderRadius: '0.25rem', overflow: 'hidden', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
+                    <Image src={getImageUrl(slide.image_url) || ''} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
                   </div>
                 </td>
                 <td style={{ padding: '1rem' }}>

@@ -1,18 +1,10 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
 import { addBlog, deleteBlog, updateBlog } from '@/app/actions/blogActions';
-
-interface Blog {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  read_time: string;
-  image?: string;
-  created_at: string;
-}
+import { Blog } from '@/types';
 
 interface BlogManagerProps {
   initialBlogs: Blog[];
@@ -110,8 +102,8 @@ export function BlogManager({ initialBlogs }: BlogManagerProps) {
                 style={{ flex: 1, padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }} 
               />
               {currentPreview && (
-                <div style={{ width: '100px', height: '100px', borderRadius: '0.5rem', overflow: 'hidden', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={currentPreview} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'relative', width: '100px', height: '100px', borderRadius: '0.5rem', overflow: 'hidden', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-secondary)' }}>
+                  <Image src={currentPreview} alt="Preview" fill style={{ objectFit: 'cover' }} unoptimized />
                 </div>
               )}
             </div>
@@ -140,9 +132,9 @@ export function BlogManager({ initialBlogs }: BlogManagerProps) {
             {initialBlogs.map(b => (
               <tr key={b.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                 <td style={{ padding: '1rem' }}>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '0.25rem', overflow: 'hidden', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
+                  <div style={{ position: 'relative', width: '40px', height: '40px', borderRadius: '0.25rem', overflow: 'hidden', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
                     {b.image ? (
-                      <img src={getIconUrl(b.image) || ''} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src={getIconUrl(b.image) || ''} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
                     ) : (
                       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>📄</div>
                     )}

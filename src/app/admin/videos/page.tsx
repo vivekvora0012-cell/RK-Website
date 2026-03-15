@@ -1,10 +1,11 @@
 import { getVideos } from '@/app/actions/videoActions';
 import { VideoManager } from './VideoManager';
+import { Video } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminVideos() {
-  const videos = await getVideos() as any[];
+export default async function ManageVideos() {
+  const videos = (await getVideos()) as unknown as Video[];
 
   return (
     <div>

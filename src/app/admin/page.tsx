@@ -1,4 +1,5 @@
 import db from '@/lib/db';
+import { Inquiry } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
@@ -56,7 +57,7 @@ export default async function AdminDashboard() {
               </tr>
             </thead>
             <tbody>
-              {recentInquiries.length > 0 ? recentInquiries.map((inquiry: any) => (
+              {recentInquiries.length > 0 ? (recentInquiries as unknown as Inquiry[]).map((inquiry) => (
                 <tr key={inquiry.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '1rem' }}>{inquiry.name}</td>
                   <td style={{ padding: '1rem' }}>{inquiry.email}</td>

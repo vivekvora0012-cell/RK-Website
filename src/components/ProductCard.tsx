@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export interface ProductCardProps {
   id: number;
@@ -80,12 +81,14 @@ export function ProductCard({ name, price, desc, serial_no, model_no, ratio, ima
       {validImageUrls.length > 0 ? (
         <div style={{ width: '100%', height: '350px', backgroundColor: '#0a0a0a', overflow: 'hidden', borderBottom: '1px solid var(--border-color)', position: 'relative' }}>
           {!failedImages[currentSlide] ? (
-            <img 
+            <Image 
               src={validImageUrls[currentSlide]} 
               alt={`${name} - Slide ${currentSlide + 1}`} 
               onError={() => handleImgError(currentSlide)}
-              style={{ width: '100%', height: '100%', objectFit: 'contain', transition: 'all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)' }} 
+              fill
+              style={{ objectFit: 'contain', transition: 'all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)' }} 
               className="product-img"
+              unoptimized
             />
           ) : (
             <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', padding: '2rem', textAlign: 'center', backgroundColor: '#111' }}>
@@ -203,7 +206,7 @@ export function ProductCard({ name, price, desc, serial_no, model_no, ratio, ima
                     }}
                   >
                     {!failedImages[idx] ? (
-                      <img src={url} alt="" onError={() => handleImgError(idx)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src={url} alt="" fill onError={() => handleImgError(idx)} style={{ objectFit: 'cover' }} unoptimized />
                     ) : (
                       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontSize: '10px' }}>!</div>
                     )}

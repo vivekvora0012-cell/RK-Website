@@ -40,7 +40,7 @@ export async function submitInquiry(formData: FormData) {
 
 export async function getInquiries() {
   const rs = await db.execute('SELECT * FROM inquiries ORDER BY created_at DESC');
-  return rs.rows;
+  return rs.rows.map(row => ({ ...row }));
 }
 
 export async function markInquiryAsRead(id: number) {

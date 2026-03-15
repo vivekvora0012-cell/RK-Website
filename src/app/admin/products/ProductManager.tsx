@@ -67,7 +67,7 @@ export function ProductManager({ initialProducts }: ProductManagerProps) {
     if (changed) {
       setValidationResults(newResults);
     }
-  }, [imageText, urlRegex]);
+  }, [imageText, urlRegex, validationResults]);
 
   // React to editingProduct change
   React.useEffect(() => {
@@ -217,7 +217,7 @@ export function ProductManager({ initialProducts }: ProductManagerProps) {
             ></textarea>
             {invalidCount > 0 && (
               <p style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '0.5rem', fontWeight: 500 }}>
-                ⚠️ Some links are private. Set sharing to "Anyone with the link" in Google Drive.
+                ⚠️ Some links are private. Set sharing to &quot;Anyone with the link&quot; in Google Drive.
               </p>
             )}
             <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.4rem' }}>

@@ -1,10 +1,11 @@
 import { getServices } from '@/app/actions/serviceActions';
 import { ServiceManager } from './ServiceManager';
+import { Service } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminServices() {
-  const services = await getServices() as any[];
+  const services = (await getServices()) as unknown as Service[];
 
   return (
     <div>

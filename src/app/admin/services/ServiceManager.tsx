@@ -1,16 +1,10 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
 import { addService, deleteService, updateService } from '@/app/actions/serviceActions';
-
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  created_at: string;
-}
+import { Service } from '@/types';
 
 interface ServiceManagerProps {
   initialServices: Service[];
@@ -19,7 +13,6 @@ interface ServiceManagerProps {
 export function ServiceManager({ initialServices }: ServiceManagerProps) {
   const [editingService, setEditingService] = React.useState<Service | null>(null);
   const [selectedIcon, setSelectedIcon] = React.useState('⚙️');
-  const [isValidating, setIsValidating] = React.useState(false);
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const getDriveId = (url: string) => {
@@ -133,7 +126,9 @@ export function ServiceManager({ initialServices }: ServiceManagerProps) {
                 overflow: 'hidden'
               }}>
                 {iconUrl ? (
-                  <img src={iconUrl} alt="Icon Preview" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                    <Image src={iconUrl} alt="Icon Preview" fill style={{ objectFit: 'contain' }} unoptimized />
+                  </div>
                 ) : (
                   selectedIcon
                 )}
@@ -214,8 +209,8 @@ export function ServiceManager({ initialServices }: ServiceManagerProps) {
                 <tr key={s.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '1rem', fontSize: '1.5rem' }}>
                     {iconUrl ? (
-                      <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.25rem', overflow: 'hidden', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--border-color)' }}>
-                        <img src={iconUrl} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      <div style={{ position: 'relative', width: '2.5rem', height: '2.5rem', borderRadius: '0.25rem', overflow: 'hidden', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
+                        <Image src={iconUrl} alt={s.title} fill style={{ objectFit: 'contain' }} unoptimized />
                       </div>
                     ) : (
                       s.icon

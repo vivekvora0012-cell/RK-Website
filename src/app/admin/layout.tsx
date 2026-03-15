@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Package, Box, FileText, Video, Bell, LogOut, Mail } from 'lucide-react';
+import { Home, Package, Box, FileText, Video, LogOut, Mail } from 'lucide-react';
 import { logout } from '@/app/actions/auth';
 
 export default function AdminLayout({

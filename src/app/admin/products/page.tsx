@@ -1,10 +1,11 @@
 import { getProducts } from '@/app/actions/productActions';
 import { ProductManager } from './ProductManager';
+import { Product } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ManageProducts() {
-  const products = await getProducts() as any[];
+  const products = (await getProducts()) as unknown as Product[];
 
   return (
     <div>

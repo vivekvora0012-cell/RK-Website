@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 
 interface VideoPlayerProps {
   title: string;
@@ -78,10 +79,12 @@ export function VideoPlayer({ title, url, duration }: VideoPlayerProps) {
       }}>
         {/* Placeholder Thumbnail */}
         {ytId ? (
-            <img 
+            <Image 
                 src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`} 
                 alt={title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }}
+                fill
+                style={{ objectFit: 'cover', opacity: 0.6 }}
+                unoptimized
             />
         ) : driveId ? (
             <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-secondary)', color: 'var(--text-secondary)' }}>

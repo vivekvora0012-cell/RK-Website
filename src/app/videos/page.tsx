@@ -2,23 +2,34 @@ import db from '@/lib/db';
 import { FadeIn } from '@/components/FadeIn';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import styles from './videos.module.css';
+import { Video } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Videos() {
+async function getVideos(): Promise<Video[]> {
   const rs = await db.execute('SELECT * FROM videos ORDER BY created_at DESC');
   const dbVideos = rs.rows;
 
-  const videos = dbVideos.length > 0 ? dbVideos.map((v: any) => ({
-    title: String(v.title),
-    duration: String(v.duration),
-    url: String(v.url)
-  })) : [
-    { title: 'RK Design Philosophy masterclass', duration: '12:45', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-    { title: 'Behind the aesthetic: Royal Interfaces', duration: '08:20', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-    { title: 'Next.js 2026 Performance Optimization', duration: '15:10', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-    { title: 'Building the Minimalist Component Library', duration: '22:00', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-  ];
+  if (dbVideos.length > 0) {
+    return dbVideos.map((v: any) => ({
+      id: Number(v.id),
+      title: String(v.title),
+      duration: String(v.duration),
+      url: String(v.url),
+      created_at: String(v.created_at)
+    }));
+  } else {
+    return [
+      { id: 1, title: 'RK Design Philosophy masterclass', duration: '12:45', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
+      { id: 2, title: 'Behind the aesthetic: Royal Interfaces', duration: '08:20', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
+      { id: 3, title: 'Next.js 2026 Performance Optimization', duration: '15:10', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
+      { id: 4, title: 'Building the Minimalist Component Library', duration: '22:00', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },
+    ];
+  }
+}
+
+export default async function Videos() {
+  const videos = await getVideos();
 
   return (
     <div className="container section">
@@ -29,7 +40,7 @@ export default async function Videos() {
 
       <div className={styles.videoGrid}>
         {videos.map((vid, i) => (
-          <FadeIn key={i} delay={i * 0.1}>
+          <FadeIn key={vid.id || i} delay={i * 0.1}>
             <VideoPlayer title={vid.title} url={vid.url} duration={vid.duration} />
           </FadeIn>
         ))}

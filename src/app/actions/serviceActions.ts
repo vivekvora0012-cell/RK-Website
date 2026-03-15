@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function getServices() {
   const rs = await db.execute('SELECT * FROM services ORDER BY created_at DESC');
-  return rs.rows;
+  return rs.rows.map(row => ({ ...row }));
 }
 
 export async function addService(formData: FormData) {

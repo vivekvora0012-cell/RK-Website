@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function getBlogs() {
   const rs = await db.execute('SELECT * FROM blogs ORDER BY created_at DESC');
-  return rs.rows;
+  return rs.rows.map(row => ({ ...row }));
 }
 
 export async function addBlog(formData: FormData) {

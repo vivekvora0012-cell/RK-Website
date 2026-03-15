@@ -1,16 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { Plus, Edit2, Trash2, X, Play } from 'lucide-react';
+import { Plus, Edit2, Trash2, Play } from 'lucide-react';
 import { addVideo, deleteVideo, updateVideo } from '@/app/actions/videoActions';
-
-interface Video {
-  id: number;
-  title: string;
-  url: string;
-  duration: string;
-  created_at: string;
-}
+import { Video } from '@/types';
 
 interface VideoManagerProps {
   initialVideos: Video[];

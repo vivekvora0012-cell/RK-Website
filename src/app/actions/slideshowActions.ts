@@ -14,7 +14,7 @@ export interface Slide {
 
 export async function getSlides(): Promise<Slide[]> {
   const rs = await db.execute('SELECT * FROM slideshow ORDER BY order_index ASC, created_at DESC');
-  return rs.rows as unknown as Slide[];
+  return rs.rows.map(row => ({ ...row })) as unknown as Slide[];
 }
 
 export async function addSlide(formData: FormData) {

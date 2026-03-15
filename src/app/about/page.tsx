@@ -19,7 +19,7 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={0.3} distance={20}>
             <p style={{ marginBottom: '1.5rem' }}>
-              Beyond gear technology, our engineering division pioneers the development of Automatic SPM (Special Purpose Machine) Drills and Mini VMC (Vertical Machining Center) machines. We don't just assemble parts; we engineer complete solutions that drive efficiency on the factory floor.
+              Beyond gear technology, our engineering division pioneers the development of Automatic SPM (Special Purpose Machine) Drills and Mini VMC (Vertical Machining Center) machines. We don&apos;t just assemble parts; we engineer complete solutions that drive efficiency on the factory floor.
             </p>
           </FadeIn>
           <FadeIn delay={0.4} distance={20}>

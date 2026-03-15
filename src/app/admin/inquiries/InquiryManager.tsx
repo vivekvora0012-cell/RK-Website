@@ -3,16 +3,7 @@
 import * as React from 'react';
 import { Mail, Trash2, CheckCircle, Clock } from 'lucide-react';
 import { deleteInquiry, markInquiryAsRead } from '@/app/actions/inquiryActions';
-
-interface Inquiry {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  is_read: number;
-  created_at: string;
-}
+import { Inquiry } from '@/types';
 
 interface InquiryManagerProps {
   initialInquiries: Inquiry[];

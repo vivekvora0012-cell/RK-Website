@@ -1,8 +1,10 @@
-const Database = require('better-sqlite3');
 const { createClient } = require('@libsql/client');
 require('dotenv').config();
 
-const dbLocal = new Database('rk_database.sqlite');
+const dbLocal = createClient({
+  url: "file:rk_database.sqlite"
+});
+
 const dbRemote = createClient({
   url: process.env.TURSO_DATABASE_URL,
   authToken: process.env.TURSO_AUTH_TOKEN,
@@ -34,15 +36,13 @@ async function migrate() {
 
   for (const table of tables) {
     console.log(`📦 Migrating table: ${table}...`);
-    const rows = dbLocal.prepare(`SELECT * FROM ${table}`).all();
+    const rs = await dbLocal.execute(`SELECT * FROM ${table}`);
+    const rows = rs.rows;
     
     if (rows.length === 0) {
       console.log(`  - No data found in ${table}. Skipping.`);
       continue;
     }
-
-    // Clear remote table first (optional, but ensures clean sync)
-    // await dbRemote.execute(`DELETE FROM ${table}`);
 
     for (const row of rows) {
       const keys = Object.keys(row);
@@ -62,7 +62,6 @@ async function migrate() {
   }
 
   console.log('🎉 Migration to Turso complete!');
-  dbLocal.close();
 }
 
 migrate().catch(console.error);

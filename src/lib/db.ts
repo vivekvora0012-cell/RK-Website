@@ -85,12 +85,16 @@ export async function initDB() {
   // Migration: Add image column to blogs if not exists
   try {
     await db.execute("ALTER TABLE blogs ADD COLUMN image TEXT");
-  } catch (e) {}
+  } catch {
+    // Column might already exist
+  }
 
   // Migration: Add phone column to inquiries if not exists
   try {
     await db.execute("ALTER TABLE inquiries ADD COLUMN phone TEXT");
-  } catch (e) {}
+  } catch {
+    // Column might already exist
+  }
 }
 
 // Note: In Next.js App Router, we usually call initDB in a root layout or 

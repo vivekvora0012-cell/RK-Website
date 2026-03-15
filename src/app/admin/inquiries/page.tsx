@@ -1,6 +1,7 @@
 import { getInquiries } from '@/app/actions/inquiryActions';
 import { InquiryManager } from './InquiryManager';
 import { FadeIn } from '@/components/FadeIn';
+import { Inquiry } from '@/types';
 
 export default async function AdminInquiriesPage() {
   const inquiries = await getInquiries();
@@ -14,7 +15,7 @@ export default async function AdminInquiriesPage() {
         </div>
       </FadeIn>
 
-      <InquiryManager initialInquiries={inquiries as any} />
+      <InquiryManager initialInquiries={inquiries as unknown as Inquiry[]} />
     </div>
   );
 }
