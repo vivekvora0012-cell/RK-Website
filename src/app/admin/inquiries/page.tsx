@@ -3,6 +3,8 @@ import { InquiryManager } from './InquiryManager';
 import { FadeIn } from '@/components/FadeIn';
 import { Inquiry } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminInquiriesPage() {
   const inquiries = await getInquiries();
 
