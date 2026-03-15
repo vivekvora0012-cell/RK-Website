@@ -4,8 +4,13 @@ import db from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
 export async function getProducts() {
-  const rs = await db.execute('SELECT * FROM products ORDER BY created_at DESC');
-  return rs.rows.map(row => ({ ...row }));
+  try {
+    const rs = await db.execute('SELECT * FROM products ORDER BY created_at DESC');
+    return rs.rows.map(row => ({ ...row }));
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    return [];
+  }
 }
 
 export async function addProduct(formData: FormData) {
@@ -21,26 +26,36 @@ export async function addProduct(formData: FormData) {
   const imagesArray = imagesRaw.match(urlRegex) || [];
   const imagesJson = JSON.stringify(imagesArray.map((url: string) => url.trim()));
   
-  await db.execute({
-    sql: `
-      INSERT INTO products (name, price, description, serial_no, model_no, ratio, images) 
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `,
-    args: [name, price, description, serialNo, modelNo, ratio, imagesJson]
-  });
-  
-  revalidatePath('/admin/products');
-  revalidatePath('/products');
+  try {
+    await db.execute({
+      sql: `
+        INSERT INTO products (name, price, description, serial_no, model_no, ratio, images) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `,
+      args: [name, price, description, serialNo, modelNo, ratio, imagesJson]
+    });
+    
+    revalidatePath('/admin/products');
+    revalidatePath('/products');
+  } catch (error) {
+    console.error('Failed to add product:', error);
+    throw error;
+  }
 }
 
 export async function deleteProduct(id: number) {
-  await db.execute({
-    sql: 'DELETE FROM products WHERE id = ?',
-    args: [id]
-  });
-  
-  revalidatePath('/admin/products');
-  revalidatePath('/products');
+  try {
+    await db.execute({
+      sql: 'DELETE FROM products WHERE id = ?',
+      args: [id]
+    });
+    
+    revalidatePath('/admin/products');
+    revalidatePath('/products');
+  } catch (error) {
+    console.error('Failed to delete product:', error);
+    throw error;
+  }
 }
 
 export async function updateProduct(id: number, formData: FormData) {
@@ -56,15 +71,20 @@ export async function updateProduct(id: number, formData: FormData) {
   const imagesArray = imagesRaw.match(urlRegex) || [];
   const imagesJson = JSON.stringify(imagesArray.map((url: string) => url.trim()));
   
-  await db.execute({
-    sql: `
-      UPDATE products 
-      SET name = ?, price = ?, description = ?, serial_no = ?, model_no = ?, ratio = ?, images = ?
-      WHERE id = ?
-    `,
-    args: [name, price, description, serialNo, modelNo, ratio, imagesJson, id]
-  });
-  
-  revalidatePath('/admin/products');
-  revalidatePath('/products');
+  try {
+    await db.execute({
+      sql: `
+        UPDATE products 
+        SET name = ?, price = ?, description = ?, serial_no = ?, model_no = ?, ratio = ?, images = ?
+        WHERE id = ?
+      `,
+      args: [name, price, description, serialNo, modelNo, ratio, imagesJson, id]
+    });
+    
+    revalidatePath('/admin/products');
+    revalidatePath('/products');
+  } catch (error) {
+    console.error('Failed to update product:', error);
+    throw error;
+  }
 }

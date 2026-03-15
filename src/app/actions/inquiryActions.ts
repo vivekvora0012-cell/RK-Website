@@ -30,17 +30,27 @@ export async function submitInquiry(formData: FormData) {
   const name = `${firstName} ${lastName}`.trim();
   const fullMessage = `[Interest: ${interest}] ${message}`;
 
-  await db.execute({
-    sql: 'INSERT INTO inquiries (name, email, phone, message) VALUES (?, ?, ?, ?)',
-    args: [name, email, phone, fullMessage]
-  });
-  
-  revalidatePath('/admin/inquiries');
+  try {
+    await db.execute({
+      sql: 'INSERT INTO inquiries (name, email, phone, message) VALUES (?, ?, ?, ?)',
+      args: [name, email, phone, fullMessage]
+    });
+    
+    revalidatePath('/admin/inquiries');
+  } catch (error) {
+    console.error('Failed to submit inquiry:', error);
+    throw new Error('Could not send message. Please try again later.');
+  }
 }
 
 export async function getInquiries() {
-  const rs = await db.execute('SELECT * FROM inquiries ORDER BY created_at DESC');
-  return rs.rows.map(row => ({ ...row }));
+  try {
+    const rs = await db.execute('SELECT * FROM inquiries ORDER BY created_at DESC');
+    return rs.rows.map(row => ({ ...row }));
+  } catch (error) {
+    console.error('Failed to fetch inquiries:', error);
+    return [];
+  }
 }
 
 export async function markInquiryAsRead(id: number) {
