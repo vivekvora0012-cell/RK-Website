@@ -1,21 +1,59 @@
-import { createClient } from '@libsql/client';
+import { createClient, Client } from '@libsql/client';
 
-// Use environment variables for Turso, or local file for development
-const isProduction = process.env.NODE_ENV === 'production';
-const url = isProduction && process.env.TURSO_DATABASE_URL 
-  ? process.env.TURSO_DATABASE_URL 
-  : "file:rk_database.sqlite";
-const authToken = isProduction ? process.env.TURSO_AUTH_TOKEN : undefined;
+// singleton for database client
+let client: Client | null = null;
 
-const db = createClient({
-  url: url,
-  authToken: authToken,
-});
+export function getClient(): Client {
+  if (client) return client;
+
+  const isProduction = process.env.NODE_ENV === 'production';
+  const rawUrl = process.env.TURSO_DATABASE_URL;
+  const rawToken = process.env.TURSO_AUTH_TOKEN;
+
+  // Development fallback to local file
+  const url = (isProduction && rawUrl) ? rawUrl : "file:rk_database.sqlite";
+  const authToken = isProduction ? rawToken : undefined;
+
+  try {
+    client = createClient({
+      url: url,
+      authToken: authToken,
+    });
+    return client;
+  } catch (error) {
+    console.error("Critical: Failed to create database client:", error);
+    // Return a dummy client or throw a more descriptive error
+    throw new Error("Database configuration error.");
+  }
+}
+
+// Proxied db object for backward compatibility
+const db = {
+  execute: async (...args: any[]) => {
+    try {
+      const c = getClient();
+      return await (c.execute as any)(...args);
+    } catch (e) {
+      console.error("Database execution error:", e);
+      // Return empty results instead of crashing for select queries
+      if (typeof args[0] === 'string' && args[0].trim().toUpperCase().startsWith('SELECT')) {
+        return { rows: [], columns: [], rowsAffected: 0 };
+      }
+      throw e;
+    }
+  },
+  batch: async (...args: any[]) => {
+    const c = getClient();
+    return await (c.batch as any)(...args);
+  }
+};
 
 // Initialize database tables if they do not exist
 export async function initDB() {
   try {
-    await db.execute(`
+    const c = getClient();
+    
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
@@ -30,7 +68,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS services (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
@@ -40,7 +78,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS blogs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
@@ -51,7 +89,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS videos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
@@ -61,7 +99,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS inquiries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
@@ -72,7 +110,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS slideshow (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
@@ -83,7 +121,7 @@ export async function initDB() {
       );
     `);
 
-    await db.execute(`
+    await c.execute(`
       CREATE TABLE IF NOT EXISTS social_links (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         platform TEXT NOT NULL,
@@ -93,26 +131,13 @@ export async function initDB() {
       );
     `);
 
-    // Migration: Add image column to blogs if not exists
-    try {
-      await db.execute("ALTER TABLE blogs ADD COLUMN image TEXT");
-    } catch {
-      // Column might already exist
-    }
+    // Migration logic
+    try { await c.execute("ALTER TABLE blogs ADD COLUMN image TEXT"); } catch {}
+    try { await c.execute("ALTER TABLE inquiries ADD COLUMN phone TEXT"); } catch {}
 
-    // Migration: Add phone column to inquiries if not exists
-    try {
-      await db.execute("ALTER TABLE inquiries ADD COLUMN phone TEXT");
-    } catch {
-      // Column might already exist
-    }
   } catch (error) {
     console.error("Database initialization failed:", error);
   }
 }
-
-// Note: In Next.js App Router, we usually call initDB in a root layout or 
-// handle migrations separately. For now, we'll keep the export and 
-// let server actions ensure the DB is ready or rely on a pre-deployment step.
 
 export default db;
