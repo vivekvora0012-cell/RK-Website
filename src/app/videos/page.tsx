@@ -22,10 +22,10 @@ async function getVideos(): Promise<Video[]> {
     });
   } else {
     return [
-      { id: 1, title: '3D Working Animation Video of Mobile Crushing Plant', url: 'https://www.youtube.com/watch?v=FqSaj7rskS0', created_at: '2026-01-01' },
-      { id: 2, title: 'Stationary Stone Crushing Plant 3D Model Working Animation', url: 'https://www.youtube.com/watch?v=x7fP7m_T7vE', created_at: '2026-01-01' },
-      { id: 3, title: 'Jaw Crusher Working Principle Animation', url: 'https://www.youtube.com/watch?v=jW01e1-oWkM', created_at: '2026-01-01' },
-      { id: 4, title: 'Baichy Stone Crushing Plant 3D Working Animation', url: 'https://www.youtube.com/watch?v=Yp94LpIsL38', created_at: '2026-01-01' },
+      { id: 1, title: 'Jaw Crusher Working Principle Animation', url: 'https://www.youtube.com/watch?v=jW01e1-oWkM', created_at: '2026-01-01' },
+      { id: 2, title: 'Stone Crushing Plant 3D Model Animation', url: 'https://www.youtube.com/watch?v=FqSaj7rskS0', created_at: '2026-01-01' },
+      { id: 3, title: 'Complete Crushing Production Line Workflow', url: 'https://www.youtube.com/watch?v=x7fP7m_T7vE', created_at: '2026-01-01' },
+      { id: 4, title: 'Crushing Machinery Technical Visualization', url: 'https://www.youtube.com/watch?v=Yp94LpIsL38', created_at: '2026-01-01' },
     ];
   }
 }
