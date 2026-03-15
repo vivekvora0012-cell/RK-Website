@@ -46,7 +46,7 @@ export async function submitInquiry(formData: FormData) {
 export async function getInquiries() {
   try {
     const rs = await db.execute('SELECT * FROM inquiries ORDER BY created_at DESC');
-    return rs.rows.map(row => ({ ...row }));
+    return rs.rows.map((row: any) => ({ ...row }));
   } catch (error) {
     console.error('Failed to fetch inquiries:', error);
     return [];

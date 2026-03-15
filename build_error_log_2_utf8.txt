@@ -1,0 +1,59 @@
+﻿
+> tempproject@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 3.0s
+  Running TypeScript ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : Not 
+   Specified: (Failed to compile  
+  .:String) [], RemoteException
+    + FullyQualifiedErrorId : Nat 
+   iveCommandError
+ 
+
+./src/app/actions/slideshowActions
+.ts:18:24
+Type error: Parameter 'row' 
+implicitly has an 'any' type.
+
+[0m [90m 16 |[39m   
+[36mtry[39m {
+ [90m 17 |[39m     
+[36mconst[39m rs [33m=[39m 
+[36mawait[39m 
+db[33m.[39mexecute([32m'SELECT 
+* FROM slideshow ORDER BY 
+order_index ASC, created_at 
+DESC'[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 18 
+|[39m     [36mreturn[39m rs[33
+m.[39mrows[33m.[39mmap(row 
+[33m=>[39m ({ [33m...[39mrow 
+})) [36mas[39m unknown 
+[36mas[39m 
+[33mSlide[39m[][33m;[39m
+ [90m    |[39m                  
+      [31m[1m^[22m[39m
+ [90m 19 |[39m   } 
+[36mcatch[39m (error) {
+ [90m 20 |[39m     console[33m.
+[39merror([32m'Failed to fetch 
+slides:'[39m[33m,[39m 
+error)[33m;[39m
+ [90m 21 |[39m     
+[36mreturn[39m [][33m;[39m[0m
+Next.js build worker exited with 
+code: 1 and signal: null

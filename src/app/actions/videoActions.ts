@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 export async function getVideos() {
   try {
     const rs = await db.execute('SELECT * FROM videos ORDER BY created_at DESC');
-    return rs.rows.map(row => ({ ...row }));
+    return rs.rows.map((row: any) => ({ ...row }));
   } catch (error) {
     console.error('Failed to fetch videos:', error);
     return [];

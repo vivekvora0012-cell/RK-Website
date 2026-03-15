@@ -1,0 +1,62 @@
+﻿
+> tempproject@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+node.exe : ΓÜá The "middleware" 
+file convention is deprecated. 
+Please use "proxy" instead. Learn 
+more: https://nextjs.org/docs/mess
+ages/middleware-to-proxy
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : Not 
+   Specified: (ΓÜá The "middle..  
+  .leware-to-proxy:String) [],    
+ RemoteException
+    + FullyQualifiedErrorId : Nat 
+   iveCommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.9s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/actions/blogActions.ts:9
+:24
+Type error: Parameter 'row' 
+implicitly has an 'any' type.
+
+[0m [90m  7 |[39m   
+[36mtry[39m {
+ [90m  8 |[39m     
+[36mconst[39m rs [33m=[39m 
+[36mawait[39m 
+db[33m.[39mexecute([32m'SELECT 
+* FROM blogs ORDER BY created_at 
+DESC'[39m)[33m;[39m
+[31m[1m>[22m[39m[90m  9 
+|[39m     [36mreturn[39m rs[33
+m.[39mrows[33m.[39mmap(row 
+[33m=>[39m ({ [33m...[39mrow 
+}))[33m;[39m
+ [90m    |[39m                  
+      [31m[1m^[22m[39m
+ [90m 10 |[39m   } 
+[36mcatch[39m (error) {
+ [90m 11 |[39m     console[33m.
+[39merror([32m'Failed to fetch 
+blogs:'[39m[33m,[39m 
+error)[33m;[39m
+ [90m 12 |[39m     
+[36mreturn[39m [][33m;[39m[0m
+Next.js build worker exited with 
+code: 1 and signal: null

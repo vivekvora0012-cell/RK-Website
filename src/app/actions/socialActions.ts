@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 export async function getSocialLinks() {
   try {
     const rs = await db.execute('SELECT * FROM social_links ORDER BY order_index ASC, created_at DESC');
-    return rs.rows.map(row => ({
+    return rs.rows.map((row: any) => ({
       id: Number(row.id),
       platform: String(row.platform),
       url: String(row.url),

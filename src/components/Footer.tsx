@@ -60,7 +60,7 @@ export async function Footer() {
           <div className={styles.socialGrid}>
             <Link href="/contact" className={styles.contactLink}>Contact Us</Link>
             <div className={styles.socialIcons}>
-              {socialLinks.map((link) => {
+              {socialLinks.map((link: SocialLink) => {
                 const Icon = IconMap[link.platform] || LinkIcon;
                 return (
                   <a 
