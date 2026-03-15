@@ -1,0 +1,157 @@
+.navbar {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  transition: var(--transition);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoImage {
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+
+[data-theme='dark'] .logoImage {
+  /* Give the logo a subtle brightness boost in dark mode if needed, or invert if it's dark text */
+  filter: brightness(1.2);
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.navLinks a:hover,
+.navLinks a:focus {
+  color: var(--accent-primary);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.adminNavItem {
+  margin-left: 0.5rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.adminLink {
+  color: var(--accent-primary) !important;
+  font-weight: 600 !important;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.adminLink::before {
+  content: '🔒';
+  font-size: 0.8rem;
+}
+
+/* Mobile Menu Styles */
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  z-index: 1001;
+  padding: 0.5rem;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  z-index: 1000;
+  padding: 5rem 2rem 2rem;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobileMenuOpen {
+  right: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.overlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileLink {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobileAdminLink {
+  color: var(--accent-primary) !important;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .navLinks {
+    display: none;
+  }
+  
+  .navActions .btn-outline {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}
