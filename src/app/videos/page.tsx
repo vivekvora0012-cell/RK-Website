@@ -11,13 +11,16 @@ async function getVideos(): Promise<Video[]> {
   const dbVideos = rs.rows;
 
   if (dbVideos.length > 0) {
-    return dbVideos.map((v: any) => ({
-      id: Number(v.id),
-      title: String(v.title),
-      duration: String(v.duration),
-      url: String(v.url),
-      created_at: String(v.created_at)
-    }));
+    return dbVideos.map((v: unknown) => {
+      const row = v as Record<string, unknown>;
+      return {
+        id: Number(row.id),
+        title: String(row.title),
+        duration: String(row.duration),
+        url: String(row.url),
+        created_at: String(row.created_at)
+      };
+    });
   } else {
     return [
       { id: 1, title: 'RK Design Philosophy masterclass', duration: '12:45', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-01-01' },

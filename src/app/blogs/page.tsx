@@ -12,16 +12,18 @@ async function getBlogs(): Promise<Blog[]> {
   const dbBlogs = rs.rows;
 
   if (dbBlogs.length > 0) {
-    return dbBlogs.map((b: any) => ({
-      ...b,
-      id: Number(b.id),
-      title: String(b.title),
-      excerpt: String(b.excerpt),
-      content: String(b.content),
-      read_time: String(b.read_time),
-      image: b.image ? String(b.image) : undefined,
-      created_at: String(b.created_at)
-    }));
+    return dbBlogs.map((b: unknown) => {
+      const row = b as Record<string, unknown>;
+      return {
+        id: Number(row.id),
+        title: String(row.title),
+        excerpt: String(row.excerpt),
+        content: String(row.content),
+        read_time: String(row.read_time),
+        image: row.image ? String(row.image) : undefined,
+        created_at: String(row.created_at)
+      } as Blog;
+    });
   } else {
     return [
       {

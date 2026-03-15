@@ -7,11 +7,14 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "migrate.js",
+    "migrate-turso.js",
+    "lint_results.txt",
+    "lint_results_utf8.txt"
   ]),
 ]);
 

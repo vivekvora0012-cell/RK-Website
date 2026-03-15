@@ -9,18 +9,20 @@ export const dynamic = 'force-dynamic';
 async function getProducts(): Promise<Product[]> {
   const rs = await db.execute('SELECT * FROM products ORDER BY created_at DESC');
   const dbProducts = rs.rows;
-  return dbProducts.map((p: any) => ({
-    ...p,
-    id: Number(p.id),
-    name: String(p.name),
-    price: String(p.price),
-    description: String(p.description),
-    serial_no: p.serial_no ? String(p.serial_no) : undefined,
-    model_no: p.model_no ? String(p.model_no) : undefined,
-    ratio: p.ratio ? String(p.ratio) : undefined,
-    images: String(p.images),
-    created_at: String(p.created_at)
-  })) as Product[];
+  return dbProducts.map((p: unknown) => {
+    const row = p as Record<string, unknown>;
+    return {
+      id: Number(row.id),
+      name: String(row.name),
+      price: String(row.price),
+      description: String(row.description),
+      serial_no: row.serial_no ? String(row.serial_no) : undefined,
+      model_no: row.model_no ? String(row.model_no) : undefined,
+      ratio: row.ratio ? String(row.ratio) : undefined,
+      images: String(row.images),
+      created_at: String(row.created_at)
+    };
+  }) as Product[];
 }
 
 export default async function Products() {

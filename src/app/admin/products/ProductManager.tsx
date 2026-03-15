@@ -75,9 +75,9 @@ export function ProductManager({ initialProducts }: ProductManagerProps) {
       try {
         const parsed = JSON.parse(editingProduct.images || '[]');
         setImageText(Array.isArray(parsed) ? parsed.join('\n') : '');
-      } catch(e) {
-        setImageText(editingProduct.images || '');
-      }
+          } catch {
+            console.error('Error parsing product images');
+          }
     } else {
       setImageText('');
     }
@@ -267,7 +267,7 @@ export function ProductManager({ initialProducts }: ProductManagerProps) {
               try {
                 const parsed = JSON.parse(p.images || '[]');
                 imgCount = Array.isArray(parsed) ? parsed.length : 0;
-              } catch(e) {
+              } catch {
                 // Fallback for messy data
                 imgCount = (p.images?.match(/https?:\/\//g) || []).length;
               }

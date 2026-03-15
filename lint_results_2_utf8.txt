@@ -1,0 +1,48 @@
+﻿
+> tempproject@0.1.0 lint
+> eslint
+
+node.exe : (node:16344) 
+ESLintIgnoreWarning: The 
+".eslintignore" file is no longer 
+supported. Switch to using the 
+"ignores" property in 
+"eslint.config.js": https://eslint
+.org/docs/latest/use/configure/mig
+ration-guide#ignoring-files
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : Not 
+   Specified: ((node:16344) ES..  
+  .#ignoring-files:String) [],    
+ RemoteException
+    + FullyQualifiedErrorId : Nat 
+   iveCommandError
+ 
+(Use `node --trace-warnings ...` 
+to show where the warning was 
+created)
+
+D:\Website Data\RK_Website\src\app\admin\products\ProductManager.tsx
+  270:23  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Website Data\RK_Website\src\app\blogs\page.tsx
+  16:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Website Data\RK_Website\src\app\products\page.tsx
+  13:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Website Data\RK_Website\src\app\services\page.tsx
+  48:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Website Data\RK_Website\src\app\videos\page.tsx
+  15:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 5 problems (4 errors, 1 warning)
+

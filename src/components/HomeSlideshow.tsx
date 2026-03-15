@@ -37,11 +37,11 @@ export function HomeSlideshow() {
     setCurrentIndex(newIndex);
   };
 
-  const nextSlide = () => {
+  const nextSlide = React.useCallback(() => {
     const isLastSlide = currentIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex, slides.length]);
 
   React.useEffect(() => {
     if (slides.length <= 1) return;
@@ -49,7 +49,7 @@ export function HomeSlideshow() {
       nextSlide();
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex, slides.length]);
+  }, [currentIndex, slides.length, nextSlide]);
 
   if (loading) return null;
   if (slides.length === 0) return null;
