@@ -13,10 +13,10 @@ export default function About() {
           </p>
         </FadeIn>
 
-        <div style={{ textAlign: 'left', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
+        <div className="about-content" style={{ textAlign: 'left', lineHeight: '1.8', color: 'var(--text-secondary)', padding: '0 1.5rem' }}>
           <FadeIn delay={0.2} distance={20}>
             <p style={{ marginBottom: '1.5rem' }}>
-              RK Industries was founded on a commitment to industrial robustnes and mechanical perfection. We specialize in the advanced manufacturing of heavy-duty gearboxes, including Stone Crusher Gearboxes and NU Gearboxes, built to withstand the most demanding conditions.
+              RK Industries was founded on a commitment to industrial robustness and mechanical perfection. We specialize in the advanced manufacturing of heavy-duty gearboxes, including Stone Crusher Gearboxes and NU Gearboxes, built to withstand the most demanding conditions.
             </p>
           </FadeIn>
           <FadeIn delay={0.3} distance={20}>
@@ -31,7 +31,7 @@ export default function About() {
           </FadeIn>
         </div>
 
-        <div style={{ marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+        <div style={{ marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', padding: '0 1.5rem' }}>
           <FadeIn delay={0.2}>
             <div style={{ padding: '2rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '0.5rem', border: '1px solid var(--border-color)' }}>
               <h3 style={{ fontSize: '2rem', color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>20+</h3>

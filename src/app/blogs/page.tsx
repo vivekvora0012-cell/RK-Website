@@ -78,8 +78,10 @@ export default async function BlogsPage() {
   return (
     <div className="container section">
       <FadeIn>
-        <h1 className="title">Insights & Perspectives</h1>
-        <p className="subtitle">Curated thoughts from the RK team on design, technology, and elegance.</p>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h1 className="title" style={{ color: 'var(--royal-navy)', marginBottom: '1.5rem' }}>Insights & Perspectives</h1>
+          <p className="subtitle" style={{ color: 'var(--text-secondary)', opacity: 0.9 }}>Curated thoughts from the RK team on design, technology, and elegance.</p>
+        </div>
       </FadeIn>
       
       <div className={styles.blogGrid}>
@@ -104,13 +106,14 @@ export default async function BlogsPage() {
               </div>
               
               <div className={styles.blogCardContent}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+                <div className={styles.blogMeta} style={{ justifyContent: 'center' }}>
                   <span>{new Date(blog.created_at).toLocaleDateString()}</span>
-                  <span>{blog.read_time}</span>
+                  <span>•</span>
+                  <span>{blog.read_time.includes('read') ? blog.read_time.split('read')[0] + 'read' : blog.read_time}</span>
                 </div>
                 
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', lineHeight: '1.4', fontFamily: 'var(--font-playfair)' }}>{blog.title}</h3>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1, lineHeight: '1.6' }}>{blog.excerpt}</p>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', lineHeight: '1.4', fontFamily: 'var(--font-playfair)', textAlign: 'center' }}>{blog.title}</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1, lineHeight: '1.6', textAlign: 'center' }}>{blog.excerpt}</p>
                 
                 <div>
                   <Link href={`/blogs/${blog.id}`} style={{ color: 'var(--accent-primary)', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>

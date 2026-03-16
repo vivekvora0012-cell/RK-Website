@@ -11,8 +11,10 @@
   position: absolute;
   top: -10%;
   right: -5%;
-  width: 600px;
-  height: 600px;
+  width: 90vw;
+  max-width: 600px;
+  height: 90vw;
+  max-height: 600px;
   background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
   opacity: 0.1;
   filter: blur(80px);
@@ -94,15 +96,20 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   .heroActions {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto; /* Center specifically */
+    align-items: center;
   }
   
   .heroActions a {
     width: 100%;
     text-align: center;
+    padding: 1rem;
   }
 }
 

@@ -54,9 +54,19 @@
 @media (max-width: 768px) {
   .featuredImage {
     height: 300px;
+    margin-bottom: 2rem;
   }
   
   .blogBody {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .blogHeader {
+    margin-bottom: 2rem;
+  }
+
+  .blogHeader h1 {
+    font-size: 2.25rem !important;
   }
 }

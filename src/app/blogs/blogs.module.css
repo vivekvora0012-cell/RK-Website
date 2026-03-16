@@ -42,3 +42,18 @@
     padding: 1.5rem;
   }
 }
+
+.blogMeta {
+  display: flex;
+  justify-content: flex-start; /* Fix extreme whitespace */
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.blogMeta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

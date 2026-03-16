@@ -31,8 +31,10 @@ export default async function Products() {
   return (
     <div className="container section">
       <FadeIn>
-        <h1 className={`${styles.productTitle} title`}>Our Industrial Machinery</h1>
-        <p className="subtitle text-center">Engineered for durability. Built for performance.</p>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 className={styles.productTitle}>Our Industrial Machinery</h2>
+          <p className="subtitle">Engineered for durability. Built for performance.</p>
+        </div>
       </FadeIn>
 
       <div className={styles.productsGrid}>

@@ -60,6 +60,14 @@
 }
 
 @media (max-width: 600px) {
+  .logoArea {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .socialIcons {
+    justify-content: center;
+  }
   .footer {
     padding: 3rem 0 0 0;
   }
@@ -73,6 +81,11 @@
   .logoWrapper {
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .logoImage {
+    max-width: 180px;
   }
 }
 

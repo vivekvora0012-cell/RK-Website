@@ -115,23 +115,23 @@ export function ProductCard({ name, price, desc, serial_no, model_no, ratio, ima
                 onClick={prevSlide}
                 style={{ 
                   position: 'absolute', 
-                  left: '15px', 
+                  left: '10px', 
                   top: '50%', 
                   transform: 'translateY(-50%)', 
                   backgroundColor: 'var(--accent-primary)', 
                   color: 'white', 
                   border: '2px solid white', 
                   borderRadius: '50%', 
-                  width: '52px', 
-                  height: '52px', 
+                  width: '42px', 
+                  height: '42px', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   cursor: 'pointer', 
                   zIndex: 50,
-                  fontSize: '36px',
+                  fontSize: '28px',
                   fontWeight: 'bold',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.8)'
+                  boxShadow: '0 8px 15px rgba(0,0,0,0.6)'
                 }}
                 aria-label="Previous image"
               >
@@ -141,23 +141,23 @@ export function ProductCard({ name, price, desc, serial_no, model_no, ratio, ima
                 onClick={nextSlide}
                 style={{ 
                   position: 'absolute', 
-                  right: '15px', 
+                  right: '10px', 
                   top: '50%', 
                   transform: 'translateY(-50%)', 
                   backgroundColor: 'var(--accent-primary)', 
                   color: 'white', 
                   border: '2px solid white', 
                   borderRadius: '50%', 
-                  width: '52px', 
-                  height: '52px', 
+                  width: '42px', 
+                  height: '42px', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   cursor: 'pointer', 
                   zIndex: 50,
-                  fontSize: '36px',
+                  fontSize: '28px',
                   fontWeight: 'bold',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.8)'
+                  boxShadow: '0 8px 15px rgba(0,0,0,0.6)'
                 }}
                 aria-label="Next image"
               >
@@ -251,11 +251,38 @@ export function ProductCard({ name, price, desc, serial_no, model_no, ratio, ima
 
         <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.6', flexGrow: 1 }}>{desc}</p>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
-          <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--accent-primary)' }}>{price}</span>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div className="product-footer" style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginTop: '1rem', 
+          borderTop: '1px solid var(--border-color)', 
+          paddingTop: '1.5rem',
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
+          <span className="product-price" style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--accent-primary)' }}>{price}</span>
+          <div className="product-actions" style={{ display: 'flex', gap: '0.5rem' }}>
             <Link href="/contact" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}>Inquire</Link>
           </div>
+          
+          <style jsx>{`
+            @media (max-width: 600px) {
+              .product-footer {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+              }
+              .product-actions {
+                width: 100%;
+                justify-content: center;
+              }
+              .product-actions :global(a) {
+                width: 100%;
+                text-align: center;
+              }
+            }
+          `}</style>
         </div>
       </div>
     </div>

@@ -33,11 +33,11 @@ export default function Contact() {
           <div className={styles.infoSection}>
             <h2 style={{ fontFamily: 'Playfair Display', fontSize: '2rem', marginBottom: '1rem' }}>Contact Information</h2>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '1rem', color: 'var(--accent-primary)', border: '1px solid var(--border-color)' }}>
+            <div className={styles.infoBlock}>
+              <div className={styles.infoIcon}>
                 <Phone size={24} />
               </div>
-              <div>
+              <div className={styles.infoText}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>Call Us</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>
                   <a href="tel:+919426970490" style={{ color: 'inherit', textDecoration: 'none' }}>+91 94269 70490</a>
@@ -48,11 +48,11 @@ export default function Contact() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '1rem', color: 'var(--accent-primary)', border: '1px solid var(--border-color)' }}>
+            <div className={styles.infoBlock}>
+              <div className={styles.infoIcon}>
                 <Mail size={24} />
               </div>
-              <div>
+              <div className={styles.infoText}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>Email Us</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>
                   <a href="mailto:rkindustries.rjt@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>rkindustries.rjt@gmail.com</a>
@@ -60,11 +60,11 @@ export default function Contact() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '1rem', color: 'var(--accent-primary)', border: '1px solid var(--border-color)' }}>
+            <div className={styles.infoBlock}>
+              <div className={styles.infoIcon}>
                 <MapPin size={24} />
               </div>
-              <div>
+              <div className={styles.infoText}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>Visit Us</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Kailash Industrial Estate, Plot 22-25,</p>
                 <p style={{ color: 'var(--text-secondary)' }}>Shed - 1, Swati park 80 feet Road,</p>

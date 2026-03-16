@@ -56,7 +56,6 @@ export function VideoPlayer({ title, url, duration }: VideoPlayerProps) {
               allowFullScreen
             ></iframe>
           </div>
-          <h3 style={{ marginTop: '1.25rem', fontSize: '1.125rem', fontFamily: 'var(--font-playfair)' }}>{title}</h3>
         </div>
       );
     }
@@ -123,7 +122,6 @@ export function VideoPlayer({ title, url, duration }: VideoPlayerProps) {
         
       </div>
       
-      <h3 style={{ marginTop: '1.25rem', fontSize: '1.125rem', fontFamily: 'var(--font-playfair)', fontWeight: 600 }}>{title}</h3>
     </div>
   );
 }

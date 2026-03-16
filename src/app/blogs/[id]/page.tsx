@@ -45,13 +45,13 @@ export default async function BlogDetailPage({
         <article>
           <FadeIn delay={0.1}>
             <header className={styles.blogHeader}>
-              <div className={styles.blogMeta}>
+              <div className={styles.blogMeta} style={{ opacity: 0.8 }}>
                 <span>{new Date(blog.created_at).toLocaleDateString()}</span>
                 <span>•</span>
-                <span>{blog.read_time}</span>
+                <span>{blog.read_time.includes('read') ? blog.read_time.split('read')[0] + 'read' : blog.read_time}</span>
               </div>
-              <h1 className="title" style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>{blog.title}</h1>
-              <p className="subtitle" style={{ fontSize: '1.25rem', opacity: 0.8 }}>{blog.excerpt}</p>
+              <h1 className="title" style={{ fontSize: '3.5rem', marginBottom: '2rem', color: 'var(--royal-navy)' }}>{blog.title}</h1>
+              <p className="subtitle" style={{ fontSize: '1.25rem', opacity: 0.9 }}>{blog.excerpt}</p>
             </header>
           </FadeIn>
 

@@ -22,7 +22,7 @@ export default async function RootLayout({
   await initDB();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Navbar />
         <main style={{ minHeight: 'calc(100vh - 150px)' }}>

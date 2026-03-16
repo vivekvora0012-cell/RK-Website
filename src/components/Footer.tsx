@@ -3,15 +3,15 @@ import Image from 'next/image';
 import styles from './Footer.module.css';
 import { getSocialLinks } from '@/app/actions/socialActions';
 import { SocialLink } from '@/types';
-import { 
-  Instagram, 
-  Facebook, 
-  Linkedin, 
-  Twitter, 
-  Youtube, 
-  Mail, 
+import {
+  Instagram,
+  Facebook,
+  Linkedin,
+  Twitter,
+  Youtube,
+  Mail,
   MessageCircle,
-  Link as LinkIcon 
+  Link as LinkIcon
 } from 'lucide-react';
 
 const IconMap: Record<string, React.ElementType> = {
@@ -41,7 +41,7 @@ export async function Footer() {
             />
           </div>
           <p className={styles.description}>
-            Providing modern, sleek, and royal experiences. We are dedicated to excellence and minimalist design.
+            Customer satisfaction is a key metric that determines the success of any business.
           </p>
         </div>
 
@@ -63,10 +63,10 @@ export async function Footer() {
               {socialLinks.map((link: SocialLink) => {
                 const Icon = IconMap[link.platform] || LinkIcon;
                 return (
-                  <a 
-                    key={link.id} 
-                    href={link.url} 
-                    target="_blank" 
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     title={link.platform}
                     className={styles.socialIcon}

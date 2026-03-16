@@ -36,14 +36,22 @@ export default async function Videos() {
   return (
     <div className="container section">
       <FadeIn>
-        <h1 className={`${styles.videoTitle} title`}>Video Gallery</h1>
-        <p className="subtitle">Visual insights, tutorials, and behind-the-scenes content.</p>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h1 className={`${styles.videoTitle} title`} style={{ color: 'var(--royal-navy)' }}>Video Gallery</h1>
+          <p className="subtitle" style={{ color: 'var(--text-secondary)', opacity: 0.9 }}>Visual insights, tutorials, and behind-the-scenes content.</p>
+        </div>
       </FadeIn>
 
       <div className={styles.videoGrid}>
         {videos.map((vid, i) => (
           <FadeIn key={vid.id || i} delay={i * 0.1}>
-            <VideoPlayer title={vid.title} url={vid.url} duration={vid.duration} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+              <VideoPlayer title={vid.title} url={vid.url} duration={vid.duration} />
+              <div style={{ textAlign: 'center' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.5rem' }}>{vid.title}</h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{vid.duration || 'Technical Demo'}</p>
+              </div>
+            </div>
           </FadeIn>
         ))}
       </div>

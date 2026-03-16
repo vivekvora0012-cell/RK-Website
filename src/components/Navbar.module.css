@@ -154,4 +154,22 @@
   .menuButton {
     display: block;
   }
+  
+  .logoImage {
+    max-width: 150px; /* Scale down logo on mobile */
+  }
+  
+  .navActions {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoImage {
+    max-width: 120px;
+  }
+  
+  .navActions {
+    gap: 0.25rem;
+  }
 }

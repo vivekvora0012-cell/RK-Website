@@ -40,11 +40,16 @@ export default async function Services() {
   return (
     <div className="container section">
       <FadeIn>
-        <h1 className="title">Industrial Excellence</h1>
+        <h1 className="title text-center">Industrial Excellence</h1>
         <p className="subtitle text-center">Comprehensive engineering services tailored for heavy-duty performance.</p>
       </FadeIn>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', 
+        gap: '2rem', 
+        marginTop: '4rem' 
+      }}>
         {services.map((serviceRow: unknown, idx: number) => {
           const s = serviceRow as Record<string, unknown>;
           const iconUrl = getIconUrl(s.icon as string);
